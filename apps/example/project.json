@@ -9,14 +9,14 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/example",
+        "outputPath": "docs",
         "index": "apps/example/src/index.html",
         "main": "apps/example/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/example/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/example/src/favicon.ico", "apps/example/src/assets"],
-        "styles": ["apps/example/src/styles.scss"],
+        "styles": ["apps/example/src/styles.scss", "@angular/material/prebuilt-themes/indigo-pink.css"],
         "scripts": []
       },
       "configurations": {

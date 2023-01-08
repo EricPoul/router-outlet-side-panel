@@ -1,0 +1,23 @@
+<mat-card *ngFor="let product of products">
+  <mat-card-header>
+    <mat-card-title>{{ product.name }}</mat-card-title>
+    <mat-card-subtitle>Price: {{ product.price }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field appearance="outline">
+      <input #input type="number" matInput value="1" />
+    </mat-form-field>
+
+    <button mat-button (click)="addProductToCart(product, input.valueAsNumber)">
+      Add
+    </button>
+
+    <button mat-button [routerLink]="[product.id]">
+      Show details
+    </button>
+  </mat-card-content>
+</mat-card>
+
+<side-panel-router-outlet>
+  <router-outlet></router-outlet>
+</side-panel-router-outlet>

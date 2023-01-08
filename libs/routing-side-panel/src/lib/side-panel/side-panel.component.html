@@ -1,0 +1,9 @@
+<div
+  class="wrapper"
+  [@wrapperSlideIn]="wrapperAnimationState$ | async"
+  [style.width]="sidePanelContext.width"
+>
+  <ng-container *ngTemplateOutlet="sidePanelContext.content"></ng-container>
+</div>
+
+<div class="backdrop" @backDropFadeIn (click)="close()"></div>

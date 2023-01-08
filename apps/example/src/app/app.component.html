@@ -1,1 +1,33 @@
-<router-outlet-side-panel-nx-welcome></router-outlet-side-panel-nx-welcome>
+<mat-toolbar color="primary">
+  <span>My App</span>
+
+  <button mat-button routerLink="product-list">Products</button>
+
+  <span class="example-spacer"></span>
+
+  <button mat-icon-button [routerLink]="[{ outlets: { cart: 'view' } }]">
+    <mat-icon
+      *ngIf="cart$ | async as cart"
+      [matBadge]="cart.length"
+      [matBadgeHidden]="!cart.length"
+      matBadgeColor="accent"
+    >
+      shopping_cart
+    </mat-icon>
+  </button>
+  <button mat-icon-button [routerLink]="[{ outlets: { account: 'view' } }]">
+    <mat-icon>person</mat-icon>
+  </button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<side-panel-router-outlet>
+  <router-outlet name="cart"></router-outlet>
+</side-panel-router-outlet>
+
+<side-panel-router-outlet>
+  <router-outlet name="account"></router-outlet>
+</side-panel-router-outlet>
+
+<side-panel-host></side-panel-host>

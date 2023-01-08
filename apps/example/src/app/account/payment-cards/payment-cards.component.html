@@ -1,0 +1,21 @@
+<side-panel-header [title]="'Payment cards'">
+  <button mat-button>Apply</button>
+</side-panel-header>
+
+<div class="plain-wrapper">
+  <button mat-button [color]="'primary'" (click)="addCard()">Add card</button>
+
+  <ng-container *ngIf="(account$ | async)?.cards as cards">
+    <mat-list>
+      <mat-list-item *ngFor="let card of cards || []; index as index">
+        <div>
+          {{ card }}
+
+          <button mat-icon-button (click)="deleteCard(index)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </ng-container>
+</div>

@@ -1,0 +1,19 @@
+<side-panel-header [title]="'Account'">
+  <button mat-button>Apply</button>
+</side-panel-header>
+
+<div class="plain-wrapper">
+  <mat-card *ngIf="account$ | async as account">
+    <mat-card-header>
+      <mat-card-title>{{ account.name }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <a routerLink="payment-cards">Payment cards</a>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<side-panel-router-outlet>
+  <router-outlet></router-outlet>
+</side-panel-router-outlet>

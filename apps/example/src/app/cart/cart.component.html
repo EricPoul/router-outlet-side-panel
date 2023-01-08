@@ -1,0 +1,59 @@
+<side-panel-header [title]="'Cart'">
+  <div class="flex">
+    <h3>Total:</h3>
+    {{ totalPrice$ | async }}
+    <button
+      mat-button
+      color="primary"
+      [disabled]="!selectedCard || !(cart$ | async)?.length"
+      (click)="clear()"
+    >
+      Buy
+    </button>
+  </div>
+</side-panel-header>
+
+<div class="plain-wrapper">
+  <mat-card *ngFor="let cartItem of cart$ | async">
+    <mat-card-header>
+      <mat-card-title>{{ cartItem.name }}</mat-card-title>
+      <mat-card-subtitle>Price: {{ cartItem.price }}; Total: {{ cartItem.price * cartItem.quantity }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <input
+          type="number"
+          matInput
+          [ngModel]="cartItem.quantity"
+          (ngModelChange)="changeCartItemQuantity(cartItem.id, $event)"
+        />
+      </mat-form-field>
+
+      <button mat-icon-button (click)="deleteCartItem(cartItem.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+  <ng-container *ngIf="(account$ | async)?.cards as cards">
+    <div *ngIf="cards?.length; else noPaymentsMethods">
+      <h3>Select a card to pay:</h3>
+
+      <mat-selection-list [multiple]="false">
+        <mat-list-option
+          *ngFor="let card of cards || []"
+          [value]="card"
+          (selectedChange)="selectCard(card)"
+        >
+          {{ card }}
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+
+    <ng-template #noPaymentsMethods>
+      There is no cards to pay. Please go to the
+      <a [routerLink]="['/', { outlets: { account: 'view' } }]">Account</a> and
+      add a payment method.
+    </ng-template>
+  </ng-container>
+</div>

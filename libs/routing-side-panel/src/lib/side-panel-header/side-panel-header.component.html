@@ -1,0 +1,13 @@
+<div class="panel-header-left">
+  <button mat-icon-button (click)="deactivate()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <h2 class="header-title">
+    {{ title }}
+  </h2>
+</div>
+
+<div class="panel-header-right">
+  <ng-content></ng-content>
+</div>
